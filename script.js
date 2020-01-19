@@ -1,6 +1,6 @@
 var inputData = document.querySelector("input[type='text']");
 var ulList = document.querySelector("ul");
-var spans = document.getElementsByTagName("span");
+var spans = document.getElementsByClassName("delete");
 var saveBtn = document.getElementById("save");
 var clearBtn = document.getElementById("clear");
 var infoBtn = document.getElementById("info");
@@ -11,7 +11,6 @@ function loadTodo(){
         ulList.innerHTML = localStorage.getItem("TodoApplication");
     }
     addDeleteEventTodo();
-    addCompleteEvent();
 }
 
 function addDeleteEventTodo(){
@@ -24,29 +23,26 @@ function addDeleteEventTodo(){
 }
 
 function addCompleteEvent(){
-    for(let li of liElements){
-        li.addEventListener("click", function(){
-            if(li.className == "completed"){
-                li.className = "";
-            }
-            else{
-                li.className = "completed";
-            }
-            event.stopPropagation();   
-        })
-    }
+    ulList.addEventListener("click", function(){
+        if(event.target.classList.contains("todo"))
+        event.target.classList.toggle("completed");
+    });
 }
 
 inputData.addEventListener("keypress", function(keyPressed){
     if(keyPressed.which === 13 && this.value!=""){//13-enter
         var newLi = document.createElement("li");
         var newSpan = document.createElement("span");
+        var newTodo = document.createElement("span");
         var newTime = document.createElement("div");
+
         newTime.className = "time";
 
+        newSpan.className = "delete";
         newSpan.innerHTML = "Удалить ";
 
-        var newTodo = this.value;
+        newTodo.className = "todo";
+        newTodo.innerHTML = this.value;
         this.value = "";
 
         var date = new Date;
@@ -56,7 +52,7 @@ inputData.addEventListener("keypress", function(keyPressed){
         ulList.appendChild(newLi).append(newSpan, newTodo, newTime);
 
         addDeleteEventTodo();  
-        addCompleteEvent();
+        //addCompleteEvent();
     }
 });
 

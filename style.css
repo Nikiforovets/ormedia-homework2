@@ -5,12 +5,24 @@ h1{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: #008c8f;
 }
-span{
+.delete{
     color: red;
+}
+
+.delete:hover{
+    cursor: pointer;
 }
 
 .completed{
     text-decoration: line-through;
+}
+
+.todo:hover{
+    cursor: pointer;
+}
+
+.noCompleted{
+    text-decoration: none;
 }
 
 ul{
