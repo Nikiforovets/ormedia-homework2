@@ -4,6 +4,7 @@ var spans = document.getElementsByClassName("delete");
 var saveBtn = document.getElementById("save");
 var clearBtn = document.getElementById("clear");
 var infoBtn = document.getElementById("info");
+var closeWindowBtn = document.getElementById("closeBtn");
 var liElements = document.getElementsByTagName("li");
 
 function loadTodo(){
@@ -66,8 +67,16 @@ clearBtn.addEventListener("click", function(){
 });
 
 infoBtn.addEventListener("click",function(){
-    alert("Разработчик: Никифоровец Максим Андреевич");
-})
+    document.getElementById("popupWindow").classList.toggle("hide");
+    document.getElementById("darkPage").classList.toggle("hide");
+    document.getElementById("todo_app").classList.toggle("dark");
+});
+
+closeWindowBtn.addEventListener("click",function(){
+    document.getElementById("popupWindow").classList.toggle("hide");
+    document.getElementById("darkPage").classList.toggle("hide");
+    document.getElementById("todo_app").classList.toggle("dark");
+});
 
 addDeleteEventTodo();
 addCompleteEvent();
